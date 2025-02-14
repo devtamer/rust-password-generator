@@ -1,5 +1,6 @@
 use std::env;
 use rand::{distr::Alphanumeric, Rng};
+use cli_clipboard::{self, x11_clipboard::Clipboard, ClipboardProvider};
 
 fn password_generator(length: Option<u16>){
     let mut password: String = Default::default();
@@ -9,7 +10,10 @@ fn password_generator(length: Option<u16>){
         let randchar: char = rand::rng().sample(Alphanumeric)  as char;
         password.push(randchar);
     }
-    println!("Your new password is {password}");
+    let mut ctx = cli_clipboard::ClipboardContext::new().unwrap();
+    ctx.set_contents(password.to_owned()).unwrap();
+    assert_eq!(ctx.get_contents().unwrap(), password);
+    println!("Your new password\n--------------------\n{password}\n--------------------\nhas been copied to your clipboard!");
     // one liner method
     //let rand_string: String = rand::rng().sample_iter(&Alphanumeric).take(length as usize).map(char::from).collect();
     //println!("Your new password is {rand_string}");
