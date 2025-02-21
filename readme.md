@@ -41,7 +41,18 @@ A simple CLI password generator written in Rust that creates a random alphanumer
      ```bash
      cargo run --release 16
      ```
+     
+   - **Custom Length (e.g., 16 characters):**
 
+     ```bash
+     cargo run --release --no-symbols
+     ```
+
+   - **Custom Length (e.g., 16 characters) && without special symbols:**
+
+     ```bash
+     cargo run --release 16 --no-symbols
+     ```
 After running, the generated password is printed to the console and copied to your clipboard. Now you can confidently use that password without ever typing it!
 
 ## Notes
