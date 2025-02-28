@@ -1,6 +1,6 @@
 use std::env;
 use rand::{distr::Alphanumeric, Rng};
-use cli_clipboard::{self, x11_clipboard::Clipboard, ClipboardProvider};
+use cli_clipboard::{ClipboardContext, ClipboardProvider};
 
 fn password_generator(length: Option<u16>, symbols: Option<bool>){
     let mut password: String = Default::default();
